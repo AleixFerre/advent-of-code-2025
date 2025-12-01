@@ -1,0 +1,18 @@
+{
+  "name": "advent-of-code-2024",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "start": "bun run index.ts --env-file=.env",
+    "dev": "bun run --watch index.ts --env-file=.env"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "canvas": "^3.0.0-rc3"
+  }
+}
