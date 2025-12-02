@@ -2,24 +2,25 @@ export async function day1() {
   const path = "day-1/input.txt";
   const file = await Bun.file(path).text();
 
-  const allList = file.split("\n");
+  const allList: [string, number][] = file.split("\n").map(v => [v.substring(0, 1), parseInt(v.substring(1))]);
 
-  // Get both the lists
-  const firstList: number[] = allList.map((p) => parseInt(p.split("   ")[0])).filter((p) => !isNaN(p));
-  const secondList: number[] = allList.map((p) => parseInt(p.split("   ")[1])).filter((p) => !isNaN(p));
+  let rotation = 50;
 
-  // Sort them
-  const filteredFirstList = firstList.toSorted((a, b) => a - b);
-  const filteredSecondList = secondList.toSorted((a, b) => a - b);
+  let timesToZero = 0;
 
-  // Find the difference
-  let difference = 0;
+  for (const item of allList) {
+    if (item[0] == 'R') {
+      rotation += item[1];
+    } else {
+      rotation -= item[1];
+    }
 
-  for (let i = 0; i < filteredFirstList.length; i++) {
-    const firstElement = filteredFirstList[i];
-    const secondElement = filteredSecondList[i];
-    difference += Math.abs(firstElement - secondElement);
+    rotation = ((rotation % 100) + 100) % 100;
+
+    if (rotation === 0) {
+      timesToZero++;
+    }
   }
 
-  console.log(difference);
+  console.log(timesToZero);
 }
