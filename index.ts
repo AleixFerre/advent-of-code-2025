@@ -5,11 +5,14 @@ import { day2 } from "./day-2/day2";
 import { day2_2 } from "./day-2/day2-2";
 import { day3 } from "./day-3/day3";
 import { day3_2 } from "./day-3/day3-2";
+import { day4 } from "./day-4/day4";
+import { day4_2 } from "./day-4/day4-2";
 
 const daysFunctions: Function[][] = [
   [day1, day1_simple, day1_2],
   [day2, day2_2],
   [day3, day3_2],
+  [day4, day4_2],
 ];
 
 const dayStr = Bun.env.DAY!;
