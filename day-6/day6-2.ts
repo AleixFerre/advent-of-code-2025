@@ -49,16 +49,14 @@ export async function day6_2() {
     }
   }
 
-  // He fet servir reduce en ves d'un doble for pa'cerme el chulo
-  const sum = operations.reduce(
-    (total, { operation, numbers }) =>
-      total +
-      numbers.reduce(
-        (acc, n) => (operation === '*' ? acc * n : acc + n),
-        operation === '*' ? 1 : 0
-      ),
-    0
-  );
+  let sum = 0;
+
+  for (const { operation, numbers } of operations) {
+    sum += numbers.reduce(
+      (acc, n) => (operation === '*' ? acc * n : acc + n),
+      operation === '*' ? 1 : 0
+    );
+  }
 
   console.log(sum);
 }
