@@ -13,6 +13,8 @@ import { day6 } from "./day-6/day6";
 import { day6_2 } from "./day-6/day6-2";
 import { day7 } from "./day-7/day7";
 import { day7_2 } from "./day-7/day7-2";
+import { day8 } from "./day-8/day8";
+import { day8_2 } from "./day-8/day8-2";
 
 const daysFunctions: Function[][] = [
   [day1, day1_simple, day1_2],
@@ -22,13 +24,13 @@ const daysFunctions: Function[][] = [
   [day5, day5_2],
   [day6, day6_2],
   [day7, day7_2],
+  [day8, day8_2],
 ];
 
 const dayStr = Bun.env.DAY!;
 const desiredDay = parseInt(dayStr) - 1;
 
 const TOTAL_TIME_LABEL = "Total time to complete";
-const DAY_TIMESTAMP = 'Day Duration';
 console.time(TOTAL_TIME_LABEL);
 
 if (0 <= desiredDay && desiredDay < daysFunctions.length) {
@@ -50,6 +52,7 @@ async function computeAllDays() {
 async function computeDay(index: number) {
   console.log(`\n--- Results of Day ${index + 1} --- \n`);
   for (let i = 0; i < daysFunctions[index].length; i++) {
+    const DAY_TIMESTAMP = 'Duration P' + (i + 1);
     console.log(`-- Calculating problem ${i + 1} --`);
     console.time(DAY_TIMESTAMP);
     await daysFunctions[index][i]();
