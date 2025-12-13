@@ -1,6 +1,8 @@
 import { day1 } from "./day-1/day1";
 import { day1_2 } from "./day-1/day1-2";
 import { day1_simple } from "./day-1/day1-simple";
+import { day10 } from "./day-10/day10";
+import { day10_2 } from "./day-10/day10-2";
 import { day2 } from "./day-2/day2";
 import { day2_2 } from "./day-2/day2-2";
 import { day3 } from "./day-3/day3";
@@ -28,6 +30,7 @@ const daysFunctions: Function[][] = [
   [day7, day7_2],
   [day8, day8_2],
   [day9, day9_2],
+  [day10, day10_2],
 ];
 
 const dayStr = Bun.env.DAY!;
@@ -55,7 +58,7 @@ async function computeAllDays() {
 async function computeDay(index: number) {
   console.log(`\n--- Results of Day ${index + 1} --- \n`);
   for (let i = 0; i < daysFunctions[index].length; i++) {
-    const DAY_TIMESTAMP = 'Duration P' + (i + 1);
+    const DAY_TIMESTAMP = "Duration P" + (i + 1);
     console.log(`-- Calculating problem ${i + 1} --`);
     console.time(DAY_TIMESTAMP);
     await daysFunctions[index][i]();
