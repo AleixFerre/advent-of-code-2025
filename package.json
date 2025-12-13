@@ -11,8 +11,5 @@
   },
   "peerDependencies": {
     "typescript": "^5.7.2"
-  },
-  "dependencies": {
-    "canvas": "^3.0.0-rc3"
   }
 }
