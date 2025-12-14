@@ -3,6 +3,8 @@ import { day1_2 } from "./day-1/day1-2";
 import { day1_simple } from "./day-1/day1-simple";
 import { day10 } from "./day-10/day10";
 import { day10_2 } from "./day-10/day10-2";
+import { day11 } from "./day-11/day11";
+import { day11_2 } from "./day-11/day11-2";
 import { day2 } from "./day-2/day2";
 import { day2_2 } from "./day-2/day2-2";
 import { day3 } from "./day-3/day3";
@@ -31,6 +33,7 @@ const daysFunctions: Function[][] = [
   [day8, day8_2],
   [day9, day9_2],
   [day10, day10_2],
+  [day11, day11_2],
 ];
 
 const dayStr = Bun.env.DAY!;
