@@ -1,47 +1,48 @@
 type Racks = Map<string, string[]>;
 
-const visited = new Map<string, number>();
+const visited = new Map<string, number>(); // fsr-aac 
 
 export async function day11_2() {
-  const path = "day-11/input.txt";
+  const path = "day-11/input-big.txt";
   const file = await Bun.file(path).text();
   const racks: Racks = new Map<string, string[]>(
     (file.split("\n").map(p => p.split(": ")).map(p => [p[0], p[1].split(" ")] as const))
   );
 
-  const ways = waysOut(racks, "svr", false, false, "svr");
 
-  console.log(visited);
+  const fTod = waysOut(racks, "fft", "dac");
+  visited.clear();
+  console.log("fft-dac", fTod);
 
-  console.log(ways);
+  const dToO = waysOut(racks, "dac", "out");
+  visited.clear();
+  console.log("dac-out", dToO);
+
+  const sToO = waysOut(racks, "svr", "out");
+  visited.clear();
+  console.log("svr-out", sToO);
+
+  const sToF = waysOut(racks, "svr", "fft");
+  console.log("svr-fft", sToF);
+
+  console.log(fTod, dToO, sToF, sToO);
+  console.log((fTod * dToO * sToF).toPrecision(23));
 }
 
-function waysOut(racks: Racks, current: string, fft: boolean, dac: boolean, total: string): number {
+function waysOut(racks: Racks, current: string, outStr: string): number {
   const currentRacks = racks.get(current)!;
-
-  const hasFFT = fft || currentRacks.includes("fft");
-  const hasDAC = dac || currentRacks.includes("dac");
 
   let n = 0;
   for (const connection of currentRacks) {
-    const newTotal = total + connection;
-    const visitedAmount = visited.get(newTotal);
-    if (visitedAmount) {
+    const visitedAmount = visited.get(connection);
+    if (visitedAmount !== undefined) {
       n += visitedAmount;
     } else {
-      const sum = getSum(connection, hasFFT, hasDAC, racks, newTotal);
-      visited.set(newTotal, sum);
-      n += sum;
+      if (connection === outStr) n += 1;
+      else if (connection === "out") n = 0;
+      else n += waysOut(racks, connection, outStr);
+      visited.set(connection, n);
     }
   }
-
   return n;
-}
-
-function getSum(connection: string, hasFFT: boolean, hasDAC: boolean, racks: Racks, total: string): number {
-  if (connection === "out") {
-    return hasDAC && hasFFT ? 1 : 0;
-  } else {
-    return waysOut(racks, connection, hasFFT, hasDAC, total);
-  }
 }
