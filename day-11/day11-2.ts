@@ -18,15 +18,12 @@ export async function day11_2() {
   visited.clear();
   console.log("dac-out", dToO);
 
-  const sToO = waysOut(racks, "svr", "out");
-  visited.clear();
-  console.log("svr-out", sToO);
 
   const sToF = waysOut(racks, "svr", "fft");
   console.log("svr-fft", sToF);
 
-  console.log(fTod, dToO, sToF, sToO);
-  console.log((fTod * dToO * sToF).toPrecision(23));
+  console.log(sToF, fTod, dToO);
+  console.log((sToF * fTod * dToO).toPrecision(23));
 }
 
 function waysOut(racks: Racks, current: string, outStr: string): number {
