@@ -1,6 +1,6 @@
-# Advent of code 2024
+# Advent of code 2025
 
-My take on 2024th Advent of Code.
+My take on 2025th Advent of Code.
 
 ## How to run it?
 
